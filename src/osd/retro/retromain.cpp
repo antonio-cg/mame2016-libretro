@@ -1165,6 +1165,9 @@ static void Set_Default_Option(void)
    else
       Add_Option("-nothrottle");
 
+   
+   Add_Option("-output");//agregamos la opcion para que la salida este por defecto en red
+   Add_Option("network"); 
    Add_Option("-joystick");
    Add_Option("-joystick_deadzone");
    Add_Option("0");
