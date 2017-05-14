@@ -851,7 +851,7 @@ READ8_MEMBER(peplus_state::peplus_input_bank_a_r)
 		}
 		m_last_door = m_maincpu->total_cycles();
 	}
-
+/*
 	if (curr_cycles - m_last_coin_out > 600000/12 && m_coin_out_state != 0) { // Must be below 700ms or it will time out
 		if (m_coin_out_state != 2) {
 			m_coin_out_state = 2; // Coin-Out Off
@@ -877,7 +877,12 @@ READ8_MEMBER(peplus_state::peplus_input_bank_a_r)
 			coin_out = 0x08;
 			break;
 	}
-
+*/
+	if (((read_safe(ioport("HOPPER"), 0x00) & 0x01)) == 0x01){ //leemos el sensor que pusimos
+		coin_out = 0x08; //salio moneda
+	}else{
+		coin_out = 0x00; //coint out
+	}
 	bank_a = (sda<<7) | bank_a | (m_door_open<<5) | coin_optics | coin_out;
 
 	return bank_a;
@@ -1084,6 +1089,8 @@ static INPUT_PORTS_START( peplus )
 	PORT_CONFNAME( 0x1f, 0x00, "Bill Protocol" )
 	PORT_CONFSETTING( 0x00, "ID-022" )
 	PORT_CONFSETTING( 0x01, "ID-023" )
+	PORT_START("HOPPER")
+	PORT_BIT( 0x01, IP_ACTIVE_HIGH, IPT_BUTTON10 ) PORT_NAME("HOPPERSW") PORT_IMPULSE(1)
 
 	PORT_START("SW1")
 	PORT_DIPNAME( 0x01, 0x01, "Line Frequency" ) PORT_DIPLOCATION("SW1:1")
