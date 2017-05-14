@@ -376,7 +376,8 @@ WRITE8_MEMBER(igrosoft_gamble_state::igrosoft_gamble_hopper_w)
 
 
 	m_hopper_motor = data & 0x10;
-	output().set_lamp_value(15,m_hopper_motor & (1 << 4)); //motor 
+	output().set_lamp_value(15,m_hopper_motor & (1 << 4));
+	printf("motor:%x",m_hopper_motor & (1 << 4))//motor 
 	machine().bookkeeping().coin_lockout_w(0, data & 0x01);
 	machine().bookkeeping().coin_lockout_w(1, data & 0x01);
 	machine().bookkeeping().coin_lockout_w(2, data & 0x01);
@@ -396,6 +397,7 @@ WRITE8_MEMBER(igrosoft_gamble_state::rollfr_hopper_w)
 
 	m_hopper_motor = data & 0x10;
 	output().set_lamp_value(15,m_hopper_motor & (1 << 4)); //motor 
+	printf("motor:%x",m_hopper_motor & (1 << 4))
 	machine().bookkeeping().coin_lockout_w(0,~data & 0x01);
 	machine().bookkeeping().coin_lockout_w(1,~data & 0x01);
 	machine().bookkeeping().coin_lockout_w(2,~data & 0x01);
