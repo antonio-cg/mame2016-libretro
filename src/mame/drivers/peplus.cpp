@@ -461,7 +461,7 @@ WRITE8_MEMBER(peplus_state::peplus_output_bank_a_w)
 	output().set_value("pe_bnka2",(data >> 2) & 1); /* Bell */
 	output().set_value("pe_bnka3",(data >> 3) & 1); /* N/A */
 	output().set_value("pe_bnka4",(data >> 4) & 1); /* Hopper 1 */
-	printf("motor:%x",(data >> 4) & 1);
+	printf("motor:%x \n",(data >> 4) & 1);
 	output().set_value("pe_bnka5",(data >> 5) & 1); /* Hopper 2 */
 	output().set_value("pe_bnka6",(data >> 6) & 1); /* specific to a kind of machine */
 	output().set_value("pe_bnka7",(data >> 7) & 1); /* specific to a kind of machine */
